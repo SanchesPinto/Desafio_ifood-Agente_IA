@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  # 1. Sistema Legado (Porta 8000)
+  mock-api:
+    build: .
+    command: uvicorn mock_api.main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    networks:
+      - ifood-net
+
+  # 2. Middleware de IA + RAG (Porta 8001)
+  middleware:
+    build: .
+    command: python middleware.py
+    ports:
+      - "8001:8001"
+    volumes:
+      # Persiste o banco ChromaDB para não sumir ao reiniciar
+      - ./chroma_db:/app/chroma_db
+    depends_on:
+      - mock-api
+    networks:
+      - ifood-net
+    environment:
+      # Exemplo: Se precisar passar chaves de API via ambiente
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+
+  # 3. Flowise (Porta 3000)
+  flowise:
+    image: flowiseai/flowise
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - ifood-net
+    volumes:
+      - flowise_data:/root/.flowise
+
+networks:
+  ifood-net:
+    driver: bridge
+
+volumes:
+  flowise_data:
