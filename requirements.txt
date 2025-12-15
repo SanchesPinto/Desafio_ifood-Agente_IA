@@ -1,14 +1,20 @@
-# --- API (Fase 1) ---
-fastapi>=0.100.0
-uvicorn[standard]
-pydantic>=2.0
-
-# --- Agente & RAG (Fase 2 e 3) ---
-langchain
-langchain-community
-langchain-openai
-langchain-chroma
-chromadb
-pandas
+# --- API e Middleware ---
+fastapi
+uvicorn
+requests
+pydantic
 python-dotenv
-httpx  # Para o agente fazer requisições à nossa API
+
+# --- Processamento de Dados ---
+pandas
+
+# --- IA e RAG (LangChain + ChromaDB) ---
+langchain
+langchain-core
+langchain-community
+langchain-chroma
+langchain-huggingface
+chromadb
+
+# --- Embeddings Locais (Dependência do HuggingFace) ---
+sentence-transformers
