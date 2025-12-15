@@ -1,0 +1,23 @@
+# --- Dados Gerados / Bancos de Dados ---
+chroma_db/
+chroma.sqlite3
+*.db
+*.sqlite3
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+
+# --- IDEs / Editores ---
+.vscode/
+.idea/
+*.swp
+
+# --- Logs ---
+*.log

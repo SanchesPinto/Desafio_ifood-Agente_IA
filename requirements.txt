@@ -1,0 +1,14 @@
+# --- API (Fase 1) ---
+fastapi>=0.100.0
+uvicorn[standard]
+pydantic>=2.0
+
+# --- Agente & RAG (Fase 2 e 3) ---
+langchain
+langchain-community
+langchain-openai
+langchain-chroma
+chromadb
+pandas
+python-dotenv
+httpx  # Para o agente fazer requisições à nossa API
