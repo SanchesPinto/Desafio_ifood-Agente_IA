@@ -25,7 +25,7 @@ class PedidoInput(BaseModel):
 class PoliticaInput(BaseModel):
     duvida: str
 
-# --- Endpoints Corrigidos ---
+# --- Endpoints ---
 
 @app.get("/")
 def health_check():
@@ -37,7 +37,6 @@ def endpoint_consultar_pedido(dados: PedidoInput):
     Wrapper para consultar_pedido.
     Usa .invoke() pois é uma LangChain Tool.
     """
-    # CORREÇÃO: Passamos os argumentos como dicionário para o .invoke
     resultado = consultar_pedido.invoke({"order_id": dados.order_id})
     return resultado
 
@@ -46,7 +45,6 @@ def endpoint_cancelar_pedido(dados: PedidoInput):
     """
     Wrapper para cancelar_pedido.
     """
-    # CORREÇÃO: Passamos os argumentos como dicionário para o .invoke
     resultado = cancelar_pedido.invoke({"order_id": dados.order_id})
     return resultado
 
@@ -55,7 +53,6 @@ def endpoint_consultar_politicas(dados: PoliticaInput):
     """
     Wrapper para o RAG.
     """
-    # CORREÇÃO: Passamos os argumentos como dicionário para o .invoke
     # O nome da chave "duvida" deve bater com o argumento na função em ferramentas.py
     resposta_texto = consultar_politicas.invoke({"duvida": dados.duvida})
     

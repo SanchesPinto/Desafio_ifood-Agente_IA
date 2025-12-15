@@ -8,7 +8,6 @@ from mock_api.schemas import OrderResponse, OrderStatus, OrderItem, CancelRespon
 app = FastAPI(title="iFood Legacy System Mock", version="1.0.0")
 
 # --- BANCO DE DADOS MOCKADO (Simula o DB do iFood) ---
-# Vamos criar alguns cenários para testar o agente depois:
 # Pedido 1: Tudo certo, entregue.
 # Pedido 2: Atrasado e ainda preparando (cenário de reclamação).
 # Pedido 3: Cancelado.
@@ -29,13 +28,13 @@ MOCK_DB: Dict[str, OrderResponse] = {
     "67890": OrderResponse(
         order_id="67890",
         customer_name="Maria Oliveira",
-        status=OrderStatus.PREPARING, # Status polêmico: Preparando há muito tempo
+        status=OrderStatus.PREPARING, # Status problematico: Preparando há muito tempo
         items=[
             OrderItem(item_name="Pizza Calabresa", quantity=1, price=65.00)
         ],
         total_value=65.00,
         created_at=datetime.now() - timedelta(minutes=90), # Pedido feito 90min atrás
-        estimated_delivery=datetime.now() - timedelta(minutes=30) # Já deveria ter chegado!
+        estimated_delivery=datetime.now() - timedelta(minutes=30) # Atrasado
     )
 }
 

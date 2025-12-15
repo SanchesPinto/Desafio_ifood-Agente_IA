@@ -2,7 +2,7 @@ import requests
 from langchain_core.tools import tool
 from agente.rag import get_retriever
 
-# URL da nossa API Mockada (Fase 1)
+# URL da API Mockada (Fase 1)
 API_BASE_URL = "http://127.0.0.1:8000"
 
 @tool
@@ -46,7 +46,7 @@ def consultar_politicas(duvida: str):
     Use esta ferramenta para saber SE um reembolso é permitido ou quais são as regras.
     """
     retriever = get_retriever()
-    # O retriever retorna documentos, vamos converter para texto simples para o LLM ler
+    # O retriever retorna documentos,convertido para texto simples
     docs = retriever.invoke(duvida)
     contexto = "\n\n".join([doc.page_content for doc in docs])
     

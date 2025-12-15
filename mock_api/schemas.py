@@ -10,7 +10,7 @@ class OrderStatus(str, Enum):
     DELIVERED = "ENTREGUE"
     CANCELLED = "CANCELADO"
 
-# Modelo de um item do pedido (ex: Hamburguer, Refri)
+# Modelo de um item do pedido 
 class OrderItem(BaseModel):
     item_name: str
     quantity: int
@@ -24,7 +24,6 @@ class OrderResponse(BaseModel):
     items: List[OrderItem]
     total_value: float
     created_at: datetime
-    # Campo opcional: simular atraso pode ser útil para o agente pedir desculpas
     estimated_delivery: datetime
 
 class CancelResponse(BaseModel):
