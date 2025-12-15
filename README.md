@@ -96,6 +96,8 @@ Pré-requisitos
     Roda na porta 8001
 
 **Passo 3:** Iniciar o Orquestrador (Flowise)
+    
+    importe o arquivo flowise_flows/test_desafio_Ifood Chatflow no seu painel Flowise.
 
     Bash
     docker run -d --name flowise -p 3000:3000 flowiseai/flowise
